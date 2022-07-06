@@ -1,6 +1,5 @@
 package com.eun.triple.error;
 
-
 import com.eun.triple.constant.ErrorCode;
 import com.eun.triple.dto.TripleErrorResponse;
 import com.eun.triple.exception.TripleException;
@@ -20,15 +19,15 @@ public class TripleExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> tripleException(TripleException e, WebRequest request) {
         ErrorCode errorCode = e.getErrorCode();
         HttpStatus status = errorCode.isClientSideError() ?
-                HttpStatus.BAD_REQUEST :
-                HttpStatus.INTERNAL_SERVER_ERROR;
+            HttpStatus.BAD_REQUEST :
+            HttpStatus.INTERNAL_SERVER_ERROR;
 
         return super.handleExceptionInternal(
-                e,
-                TripleErrorResponse.of(false, errorCode.getCode(), errorCode.getMessage(e)),
-                HttpHeaders.EMPTY,
-                status,
-                request
+            e,
+            TripleErrorResponse.of(false, errorCode.getCode(), errorCode.getMessage(e)),
+            HttpHeaders.EMPTY,
+            status,
+            request
         );
     }
 
@@ -38,26 +37,27 @@ public class TripleExceptionHandler extends ResponseEntityExceptionHandler {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         return super.handleExceptionInternal(
-                e,
-                TripleErrorResponse.of(false, errorCode.getCode(), errorCode.getMessage(e)),
-                HttpHeaders.EMPTY,
-                status,
-                request
+            e,
+            TripleErrorResponse.of(false, errorCode.getCode(), errorCode.getMessage(e)),
+            HttpHeaders.EMPTY,
+            status,
+            request
         );
     }
 
     @Override
-    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body,
+        HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorCode errorCode = status.is4xxClientError() ?
-                ErrorCode.SPRING_BAD_REQUEST :
-                ErrorCode.SPRING_INTERNAL_ERROR;
+            ErrorCode.SPRING_BAD_REQUEST :
+            ErrorCode.SPRING_INTERNAL_ERROR;
 
         return super.handleExceptionInternal(
-                ex,
-                TripleErrorResponse.of(false, errorCode.getCode(), errorCode.getMessage(ex)),
-                headers,
-                status,
-                request
+            ex,
+            TripleErrorResponse.of(false, errorCode.getCode(), errorCode.getMessage(ex)),
+            headers,
+            status,
+            request
         );
     }
 

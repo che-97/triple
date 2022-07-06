@@ -1,6 +1,5 @@
 package com.eun.triple.dto;
 
-import com.eun.triple.constant.ErrorCode;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

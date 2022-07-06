@@ -15,8 +15,7 @@ public enum ErrorCode {
     SPRING_BAD_REQUEST(10001, ErrorCategory.CLIENT_SIDE_ERROR, "Spring-detected bad request"),
 
     INTERNAL_ERROR(20000, ErrorCategory.SERVER_SIDE_ERROR, "internal error"),
-    SPRING_INTERNAL_ERROR(20001, ErrorCategory.SERVER_SIDE_ERROR, "Spring-detected internal error")
-    ;
+    SPRING_INTERNAL_ERROR(20001, ErrorCategory.SERVER_SIDE_ERROR, "Spring-detected internal error");
 
     private final Integer code;
     private final ErrorCategory errorCategory;
@@ -29,8 +28,8 @@ public enum ErrorCode {
 
     public String getMessage(String message) {
         return Optional.ofNullable(message)
-                .filter(Predicate.not(String::isBlank))
-                .orElse(getMessage());
+            .filter(Predicate.not(String::isBlank))
+            .orElse(getMessage());
     }
 
     public boolean isClientSideError() {
