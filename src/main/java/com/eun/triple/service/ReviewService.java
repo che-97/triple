@@ -14,10 +14,8 @@ import com.eun.triple.repository.PointRepository;
 import com.eun.triple.repository.ReviewRepository;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -117,18 +115,7 @@ public class ReviewService {
     private void delete(ReviewRequest reviewRequest) {
         Review review = getReviewEntity(reviewRequest);
 
-        //review의 delete yn을 n으로 변경
         review.delete();
-
-        //해당 장소에 새로운 첫 리뷰 대상자 확인 후 업데이트
-        if (review.getPoints().stream()
-            .anyMatch(point -> point.hasType(PointType.REVIEW_FIRST_TIME))) {
-            Optional<Review> newBonusReview = reviewRepository.findFirstByPlaceIdAndDeleteYnAndIdNot(
-                reviewRequest.getUuIdPlaceId(), "N", reviewRequest.getUuIdReviewId(),
-                Sort.by(Sort.Order.asc("createDate")));
-            newBonusReview.ifPresent(newReview -> addPoint(newReview, PointType.REVIEW_FIRST_TIME));
-        }
-
     }
 
     private Review getReviewEntity(ReviewRequest reviewRequest) {
