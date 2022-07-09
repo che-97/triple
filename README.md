@@ -105,8 +105,43 @@
   * **sucess:** true <br />
     **errorCode:** 0 <br />
     **message:** "OK" <br />
-    **data:** null <br /><br />
-  
+    **data:** 사용자별 point 이력 및 총 point를 확인할수 있습니다. <br />
+    * id : 사용자 id
+    * totalPoint : 누적 Point 
+    * pointHistoryList : Point 이력
+      * reviewCreateDate : 리뷰 생성일
+      * reviewUpdateDate : 리뷰 수정일
+      * reviewDeleteYn : 리뷰 삭제 여부 (Y:삭제)
+      * createDate : Point 등록일
+      * updateDate : Point 삭제일
+      * type : Point type
+      * message : Point message
+      * deleteYn : Point 삭제 여부 (Y:삭제) <br /><br />
+  * **Sample Response**
+    ```
+     {
+       "success": true,
+       "errorCode": 0,
+       "message": "Ok",
+        "data": {
+           "id": "3ede0ef2-92b7-4817-a5f3-0c575361f745",
+           "totalPoint": 5,
+           "pointHistoryList": [
+               {
+                   "reviewCreateDate": "2022-07-09 22:07:10",
+                   "reviewUpdateDate": "2022-07-09 22:07:10",
+                   "reviewDeleteYn": "N",
+                   "createDate": "2022-07-09 22:07:10",
+                   "updateDate": "2022-07-09 22:07:10",
+                   "type": "REVIEW_PHOTO",
+                   "message": "사진 첨부",
+                   "deleteYn": "N"
+               }
+           ]
+        }
+     }
+    ```
+    
 * **Error Response:**
 
   * **sucess:** false <br />
@@ -116,8 +151,8 @@
   * **Sample Response**
     ```
      {
-       "success": false,
-       "errorCode": 10001,
-       "message": "undefined action"
+        "success": false,
+        "errorCode": 20000,
+        "message": "Invalid UUID string: 3ede0ef2-92b7-4817"
      }
     ```
