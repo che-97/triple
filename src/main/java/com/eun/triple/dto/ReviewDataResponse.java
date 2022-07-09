@@ -21,7 +21,6 @@ public class ReviewDataResponse<T> extends TripleErrorResponse {
         return new ReviewDataResponse<>(data);
     }
 
-    //return void (success 만 넘기는 용도)
     public static <T> ReviewDataResponse<T> empty() {
         return new ReviewDataResponse<>(null);
     }
