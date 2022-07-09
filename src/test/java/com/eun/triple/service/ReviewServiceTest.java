@@ -106,8 +106,8 @@ class ReviewServiceTest {
     void whenAlreadyUserIdAndPlaceId_thenException() throws Exception {
         // Given
         reviewRequest.setReviewId(null);
-        given(reviewRepository.existsByUserIdAndPlaceId(reviewRequest.getUuIdUserId(),
-            reviewRequest.getUuIdPlaceId())).willReturn(true);
+        given(reviewRepository.existsByUserIdAndPlaceIdAndDeleteYn(reviewRequest.getUuIdUserId(),
+            reviewRequest.getUuIdPlaceId(), "N")).willReturn(true);
 
         // When & Then
         TripleException exception = assertThrows(TripleException.class,

@@ -139,15 +139,15 @@ class ReviewRepositoryTest {
         review.addPoints(textPoint);
 
         testEntityManager.persist(review);
-        assertThat(reviewRepository.existsByUserIdAndPlaceId(reviewRequest.getUuIdUserId(),
-            reviewRequest.getUuIdPlaceId())).isTrue();
+        assertThat(reviewRepository.existsByUserIdAndPlaceIdAndDeleteYn(reviewRequest.getUuIdUserId(),
+            reviewRequest.getUuIdPlaceId(), "N")).isTrue();
     }
 
     @Test
     @DisplayName("userId와 placeId로 리뷰가 존재하지 않는지 확인")
     public void notExistsByUserIdAndPlaceId() {
-        assertThat(reviewRepository.existsByUserIdAndPlaceId(reviewRequest.getUuIdUserId(),
-            reviewRequest.getUuIdPlaceId())).isFalse();
+        assertThat(reviewRepository.existsByUserIdAndPlaceIdAndDeleteYn(reviewRequest.getUuIdUserId(),
+            reviewRequest.getUuIdPlaceId(),"N")).isFalse();
     }
 
 

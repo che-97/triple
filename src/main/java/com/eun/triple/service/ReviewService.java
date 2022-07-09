@@ -65,7 +65,7 @@ public class ReviewService {
             throw new TripleException(ErrorCode.ALREADY_WRITTEN_REVEIW);
         }
 
-        if (reviewRepository.existsByUserIdAndPlaceId(reviewRequest.getUuIdUserId(), reviewRequest.getUuIdPlaceId())) {
+        if (reviewRepository.existsByUserIdAndPlaceIdAndDeleteYn(reviewRequest.getUuIdUserId(), reviewRequest.getUuIdPlaceId(),"N")) {
             throw new TripleException(ErrorCode.ALREADY_WRITTEN_REVEIW);
         }
     }
