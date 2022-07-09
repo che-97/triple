@@ -82,7 +82,7 @@
 
 * **URL**
 
-  /user/:userId/points
+  /user/`:userId`/points
 
 
 * **Method:**
